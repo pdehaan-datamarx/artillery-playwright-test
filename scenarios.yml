@@ -1,0 +1,31 @@
+# Browser smoke tests: assert homepage titles (Playwright).
+# Browser binary: set ARTILLERY_BROWSER_EXECUTABLE_PATH in `.env` (see Artillery `--dotenv`).
+# When using a custom executablePath, you do not need npm run playwright:install.
+# Omit the variable in `.env` to use Playwright’s bundled Chromium.
+config:
+  # Default Playwright `baseURL`.
+  target: 'https://www.example.com'
+  processor: './scenarios.mjs'
+  engines:
+    playwright:
+      launchOptions:
+        headless: false
+        executablePath: '{{ $env.ARTILLERY_BROWSER_EXECUTABLE_PATH }}'
+  phases:
+    - name: 'Homepage title smoke'
+      duration: 10 # seconds?
+      arrivalRate: 1
+      maxVusers: 1
+
+scenarios:
+  - engine: playwright
+    name: 'Google — title assertion'
+    testFunction: 'assertGoogleTitle'
+
+  - engine: playwright
+    name: 'Slack — title assertion'
+    testFunction: 'assertSlackTitle'
+
+  - engine: playwright
+    name: 'Zoom — title assertion'
+    testFunction: 'assertZoomTitle'

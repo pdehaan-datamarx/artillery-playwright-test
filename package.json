@@ -1,0 +1,23 @@
+{
+  "name": "artillery",
+  "description": "",
+  "version": "1.0.0",
+  "author": "peter.dehaan",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "artillery": "^2.0.30",
+    "npm-run-all": "^4.1.5"
+  },
+  "keywords": [],
+  "license": "MPL-2.0",
+  "main": "index.js",
+  "scripts": {
+    "playwright:install": "npx playwright install chromium",
+    "test": "run-s test:*",
+    "test:google-title": "npm run artillery -- --scenario-name 'Google — title assertion' -o results/google-title.json",
+    "test:slack-title": "npm run artillery  -- --scenario-name 'Slack — title assertion' -o results/slack-title.json",
+    "test:zoom-title": "npm run artillery   -- --scenario-name 'Zoom — title assertion' -o results/zoom-title.json",
+    "artillery": "artillery run scenarios.yml --env-file .env"
+  },
+  "type": "module"
+}
