@@ -12,10 +12,10 @@ config:
         headless: false
         executablePath: '{{ $env.ARTILLERY_BROWSER_EXECUTABLE_PATH }}'
   phases:
-    - name: 'Homepage title smoke'
+    - name: 'All scenarios (random mix)'
       duration: 10 # seconds?
       arrivalRate: 1
-      maxVusers: 1
+      maxVusers: 3
 
 scenarios:
   - engine: playwright
